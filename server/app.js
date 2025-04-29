@@ -2,6 +2,7 @@ import express from "express";
 import cookieParser from "cookie-parser";
 import logger from "morgan";
 import { startBaileys } from "./services/baileys/baileysService.js";
+import { awaitingReplyService } from "./utils/awaitingReply.js";
 
 import { fileURLToPath } from "url";
 import path from "path";
@@ -14,6 +15,10 @@ const __dirname = path.dirname(__filename);
 import scrapeRouter from "./controllers/scraper/_routes.js";
 
 var app = express();
+
+const jid = "5513974034111@s.whatsapp.net";
+
+awaitingReplyService.add(jid);
 
 startBaileys();
 
