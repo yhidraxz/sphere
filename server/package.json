@@ -1,0 +1,18 @@
+{
+  "name": "sfirout",
+  "version": "0.0.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "baileys": "^6.7.16",
+    "cookie-parser": "~1.4.4",
+    "csv-writer": "^1.6.0",
+    "debug": "~2.6.9",
+    "express": "~4.16.1",
+    "morgan": "~1.9.1",
+    "playwright": "^1.52.0"
+  }
+}
