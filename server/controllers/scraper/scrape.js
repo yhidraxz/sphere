@@ -13,3 +13,5 @@ const ScrapeSend = async (req, res) => {
   await sendMsg(contacts, message);
   res.send("all leads contacted");
 };
+
+export { ScrapeSend };

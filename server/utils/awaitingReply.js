@@ -1,4 +1,4 @@
-class awaitingReplyService {
+class awaitingReplyServiceClass {
   constructor() {
     this.awaitingReply = new Map();
   }
@@ -16,4 +16,4 @@ class awaitingReplyService {
   }
 }
 
-export const awaitingReplyService = new awaitingReplyService();
+export const awaitingReplyService = new awaitingReplyServiceClass();

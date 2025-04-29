@@ -1,11 +1,17 @@
-var express = require("express");
-var path = require("path");
-var cookieParser = require("cookie-parser");
-var logger = require("morgan");
-import { startBaileys } from "./services/baileys/baileysService";
+import express from "express";
+import cookieParser from "cookie-parser";
+import logger from "morgan";
+import { startBaileys } from "./services/baileys/baileysService.js";
 
-var indexRouter = require("./routes/index");
-var usersRouter = require("./routes/users");
+import { fileURLToPath } from "url";
+import path from "path";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// var indexRouter = require("./routes/index");
+// var usersRouter = require("./routes/users.js");
+import scrapeRouter from "./controllers/scraper/_routes.js";
 
 var app = express();
 
@@ -17,7 +23,12 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use("/", indexRouter);
-app.use("/users", usersRouter);
+// app.use("/", indexRouter);
+// app.use("/users", usersRouter);
+app.use("/scrape", scrapeRouter);
 
-module.exports = app;
+app.listen(3000, () => {
+  console.log("server running on port 3000");
+});
+
+export { app };
