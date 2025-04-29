@@ -1,4 +1,5 @@
 import { chromium } from "playwright";
+import { awaitingReplyService } from "./awaitingReply.js";
 
 export async function sendMsg(contacts, message) {
   let numerosInvalidos = 0;
@@ -78,6 +79,8 @@ export async function sendMsg(contacts, message) {
 
       await page.waitForTimeout(5000);
 
+      markLeadAsContacted(contacts[i]);
+
       numerosValidos++;
     }
   }
@@ -89,4 +92,10 @@ export async function sendMsg(contacts, message) {
   console.log("nenhuma outra ação a ser executada, fechando browser");
 
   await browser.close();
+}
+
+function markLeadAsContacted(number) {
+  const jid = `${number}@s.whatsapp.net`;
+
+  awaitingReplyService.add(jid);
 }

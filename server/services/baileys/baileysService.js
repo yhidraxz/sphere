@@ -2,6 +2,7 @@ import makeWASocket, {
   useMultiFileAuthState,
   makeInMemoryStore,
 } from "baileys";
+import { awaitingReplyService } from "../../utils/awaitingReply.js";
 
 const { state, saveCreds } = useMultiFileAuthState("baileys_auth_info");
 
