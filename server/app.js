@@ -4,6 +4,9 @@ import logger from "morgan";
 import { startBaileys } from "./services/baileys/baileysService.js";
 import { awaitingReplyService } from "./utils/awaitingReply.js";
 
+import * as dotenv from "dotenv";
+dotenv.config();
+
 import { fileURLToPath } from "url";
 import path from "path";
 
@@ -13,6 +16,7 @@ const __dirname = path.dirname(__filename);
 // var indexRouter = require("./routes/index");
 // var usersRouter = require("./routes/users.js");
 import scrapeRouter from "./controllers/scraper/_routes.js";
+import { aiAnalysis } from "./services/openai/openai.js";
 
 var app = express();
 
@@ -20,7 +24,9 @@ const jid = "5513974034111@s.whatsapp.net";
 
 awaitingReplyService.add(jid);
 
-startBaileys();
+aiAnalysis();
+
+// startBaileys();
 
 app.use(logger("dev"));
 app.use(express.json());

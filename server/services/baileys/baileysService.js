@@ -4,6 +4,7 @@
 // } from "baileys";
 import { deleteChat } from "./baileysUtils.js";
 import { awaitingReplyService } from "../../utils/awaitingReply.js";
+import { aiAnalysis } from "../../services/openai/openai.js";
 import baileys from "@whiskeysockets/baileys";
 
 const {
@@ -22,7 +23,7 @@ store.readFromFile("./baileys_store.json");
 setInterval(() => {
   store.writeToFile("./baileys_store.json");
 }, 10000);
-export function startBaileys() {
+export function startBaileys(OPENAI_API_KEY) {
   const sock = makeWASocket({
     printQRInTerminal: true,
     auth: state,
@@ -35,7 +36,6 @@ export function startBaileys() {
     const { connection, lastDisconnect, qr } = update;
 
     // if (qr) {
-    //   // optional — you can skip this if you're not using a frontend
     //   axios.post('http://localhost:5000/api/update-qr', { qr }).catch(() => {});
     // }
 
@@ -52,7 +52,7 @@ export function startBaileys() {
       );
 
       if (shouldReconnect) {
-        startBaileys(); // 🔁 re-run the whole thing
+        startBaileys();
       }
     } else if (connection === "open") {
       console.log("✅ WhatsApp connected!");
@@ -64,7 +64,7 @@ export function startBaileys() {
   sock.ev.on("messages.upsert", async ({ messages, type }) => {
     const msg = messages[0];
 
-    if (!msg.message || msg.key.fromMe) return; // ⬅️ add this check
+    if (!msg.message || msg.key.fromMe) return;
 
     if (msg.key.fromMe && !msg.message) return;
 
@@ -77,7 +77,12 @@ export function startBaileys() {
 
       awaitingReplyService.remove(senderJid);
 
-      //   await deleteChat(sock, senderJid, msg);
+      const gptAnswer = aiAnalysis(userMessage);
+
+      if (gptAnswer === "No.") {
+        console.log("gpt said no");
+        // await deleteChat(sock, senderJid, msg);
+      }
     } else {
       console.log(
         "we got message from a user we werent waiting for, so fuck him"
