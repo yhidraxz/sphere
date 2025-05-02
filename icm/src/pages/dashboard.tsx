@@ -8,6 +8,7 @@ export default function Dashboard() {
       <div className="flex flex-col w-full">
         <TopBar />
         <div className="bg-darkBlue w-full h-full text-white">
+          <button className="btn btn-primary ">eu sou botão</button>
           <h1>bem vindo ao meu lar</h1>
         </div>
       </div>
