@@ -7,9 +7,9 @@ module.exports = {
         ...theme("colors"),
         darkBlue: "#000b18",
         midBlue: "#00172D",
-        danger: "#e3342f",
+        onHoverColor: "rgba(203, 203, 203, 0.2)",
       }),
     },
   },
-  plugins: [require("daisyui")],
+  plugins: [],
 };

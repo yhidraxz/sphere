@@ -1,16 +1,19 @@
+import { useState } from "react";
 import { SideBar } from "../components/Sidebar";
 import { TopBar } from "../components/Topbar";
+import { DashboardLayout } from "./dashboard/_layout";
 
 export default function Dashboard() {
+  type Page = "Geral" | "Scraper" | "Conversas";
+
+  const [activePage, setActivePage] = useState<Page>("Geral");
+
   return (
     <div className="flex bg-superBlack">
       <SideBar />
       <div className="flex flex-col w-full">
-        <TopBar />
-        <div className="bg-darkBlue w-full h-full text-white">
-          <button className="btn btn-primary ">eu sou botão</button>
-          <h1>bem vindo ao meu lar</h1>
-        </div>
+        <TopBar activePage={activePage} setActivePage={setActivePage} />
+        <DashboardLayout activePage={activePage} />
       </div>
     </div>
   );
