@@ -3,7 +3,7 @@ import { ScraperPage } from "./Scraper";
 import { ConversasPage } from "./Conversas";
 import { JSX } from "react";
 
-type Page = "Geral" | "Scraper" | "Conversas";
+export type Page = "Geral" | "Scraper" | "Conversas";
 
 const pageMap: Record<Page, JSX.Element> = {
   Geral: <GeralPage />,
