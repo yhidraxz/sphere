@@ -1,3 +1,9 @@
+import { ReactFormState } from 'react-dom/client';
+import { PrimaryButton } from './Button';
+import { Input } from './Input'
+import { Modal } from './modal';
+import React, { useState } from 'react'
+
 interface Field {
   name: string;
   label?: string;
@@ -7,9 +13,12 @@ interface Field {
 interface initiateProps {
   fields: Field[];
   onSubmit: (value: Record<string, string>) => void;
+  showModal: boolean;
+  setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export const InitiateForm: React.FC<initiateProps> = ({ fields, onSubmit }) => {
+export const InitiateForm: React.FC<initiateProps> = ({ fields, onSubmit, showModal, setShowModal }) => {
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -20,12 +29,31 @@ export const InitiateForm: React.FC<initiateProps> = ({ fields, onSubmit }) => {
     for (const field of fields) {
       values[field.name] = formData.get(field.name) as string;
     }
+
+    setShowModal(false)
     onSubmit(values);
   };
 
   return (
-    <div>
-      <h1>oi sou initiate</h1>
-    </div>
+<Modal isOpen={showModal} onClose={() => setShowModal(false)}>
+       
+       <form onSubmit={handleSubmit}>
+      
+      {fields.map((field) => (
+      
+      <Input 
+            name={field.name}
+            label={field.label}
+            type={field.type}
+          />
+      ))}
+      <PrimaryButton 
+      type='submit'
+      text='iniciar novo flow'
+      />
+    </form>
+     </Modal>
+   
+
   );
 };

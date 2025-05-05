@@ -22,3 +22,4 @@ export const NavTitle: React.FC<props> = (props) => {
     </h2>
   );
 };
+  
