@@ -1,8 +1,8 @@
-import { express } from "express";
-import { ScrapeSend } from "./flow.js";
+import express from "express";
+import { InitiateFlow } from "./flow.js";
 
 const router = express.Router();
 
-router.post("/", ScrapeSend);
+router.post("/", InitiateFlow);
 
 export default router;

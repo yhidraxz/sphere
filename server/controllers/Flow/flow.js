@@ -3,15 +3,20 @@ import { getContacts } from "../../utils/getContacts.js";
 import { sendMsg } from "../../utils/sendMsg.js";
 
 const InitiateFlow = async (req, res) => {
+  console.log("flow initiated");
+  console.log(req.body);
   let queries = req.body.queries;
   let message = req.body.message;
 
-  let buzList = await scrapeMaps(queries);
+  console.log(queries);
+  console.log(message);
 
-  let contacts = getContacts(buzList);
+  //   let buzList = await scrapeMaps(queries);
 
-  await sendMsg(contacts, message);
+  //   let contacts = getContacts(buzList);
+
+  //   await sendMsg(contacts, message);
   res.send("all leads contacted");
 };
 
-export { ScrapeSend };
+export { InitiateFlow };

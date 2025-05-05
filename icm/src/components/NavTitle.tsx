@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 interface props {
   text: string;
@@ -22,4 +22,3 @@ export const NavTitle: React.FC<props> = (props) => {
     </h2>
   );
 };
-  
