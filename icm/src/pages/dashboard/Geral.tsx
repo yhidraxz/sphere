@@ -1,3 +1,6 @@
+import { useState } from "react";
+import { initiateFlow } from "../../api/geral";
+
 export const GeralPage: React.FC = () => {
   return (
     <div>

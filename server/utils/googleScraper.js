@@ -11,6 +11,7 @@ const csvWriter = createObjectCsvWriter({
 });
 
 export async function scrapeMaps(queries) {
+  console.log("iniciando browser");
   const browser = await chromium.launch({ headless: false });
 
   const page = await browser.newPage();
@@ -23,6 +24,8 @@ export async function scrapeMaps(queries) {
     const scrollable = await page.$(
       "xpath=/html/body/div[2]/div[3]/div[8]/div[9]/div/div/div[1]/div[2]/div/div[1]/div/div/div[1]/div[1]"
     );
+
+    console.log(`im at page ${query}`);
 
     let endOfList = false;
 
@@ -38,9 +41,13 @@ export async function scrapeMaps(queries) {
       const button = buttons[randomIndex];
       await button.click();
 
+      console.log("clicked");
+
       endOfList = await page.evaluate(() =>
         document.body.innerText.includes("Você chegou ao final da lista.")
       );
+
+      console.log("end of list? " + endOfList);
     }
 
     const urls = await page.$$eval(".hfpxzc", (elements) =>
@@ -88,11 +95,12 @@ export async function scrapeMaps(queries) {
       empresa.numero = numero;
       listaEmpresas.push(empresa);
     }
-    console.log(listaEmpresas);
 
-    fullBusinessList.push(listaEmpresas);
+    fullBusinessList.push(...listaEmpresas);
   }
   await browser.close();
+
+  console.log(fullBusinessList);
 
   csvWriter
     .writeRecords(fullBusinessList) // returns a promise

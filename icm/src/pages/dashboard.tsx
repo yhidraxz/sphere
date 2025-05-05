@@ -8,7 +8,7 @@ export default function Dashboard() {
 
   return (
     <div className="flex bg-superBlack">
-      <SideBar />
+      {/* <SideBar /> */}
       <div className="flex flex-col w-full">
         <TopBar activePage={activePage} setActivePage={setActivePage} />
         <DashboardLayout activePage={activePage} />
