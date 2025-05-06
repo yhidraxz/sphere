@@ -1,13 +1,12 @@
-import { PrimaryButton } from "./Button";
 import { Input } from "./Input";
 import { Modal } from "./modal";
 import React from "react";
+import { SecondaryButton } from "./secondaryButton";
 
 interface Field {
   name: string;
   label?: string;
   type?: string;
-  pattern?: RegExp;
 }
 
 interface initiateProps {
@@ -44,7 +43,7 @@ export const ModalForm: React.FC<initiateProps> = ({
         {fields.map((field) => (
           <Input name={field.name} label={field.label} type={field.type} />
         ))}
-        <PrimaryButton type="submit" text="iniciar novo flow" />
+        <SecondaryButton type="submit" text="iniciar novo flow" />
       </form>
     </Modal>
   );

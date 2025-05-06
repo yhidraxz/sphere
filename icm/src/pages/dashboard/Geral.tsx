@@ -7,14 +7,19 @@ export const GeralPage: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
 
   const fields = [
-    { name: "queries", label: "Queries", type: "text" },
+    {
+      name: "queries",
+      label: "Empresas",
+      type: "text",
+      placeholder: 'Empresas, E.G. "barbearias em são paulo"',
+    },
     { name: "message", label: "Message", type: "text" },
   ];
   return (
     <div>
       <PrimaryButton
         type="button"
-        text="Iniciar novo flow"
+        text="+ Iniciar novo flow"
         onClick={() => setShowModal(true)}
       />
       <ModalForm

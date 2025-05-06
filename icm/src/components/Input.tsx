@@ -1,9 +1,10 @@
+import { useEffect, useState } from "react";
+
 interface InputProps {
   name: string;
   label?: string;
   type?: string;
   value?: string;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   placeholder?: string;
 }
 
@@ -25,15 +26,17 @@ export const Input: React.FC<InputProps> = ({
           {label}
         </label>
       )}
-      <input
-        id={name}
-        name={name}
-        type={type}
-        value={value}
-        onChange={onChange}
-        placeholder={placeholder}
-        className="w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-      />
+      <div className="w-full max-w-sm min-w-[200px]">
+        <input
+          id={name}
+          name={name}
+          type={type}
+          value={value}
+          onChange={onChange}
+          placeholder={placeholder}
+          className="w-full bg-transparent placeholder:text-slate-400 text-black text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-blue-500 hover:border-blue-300 shadow-sm focus:shadow"
+        />
+      </div>
     </div>
   );
 };
