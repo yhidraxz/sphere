@@ -22,7 +22,7 @@ export const PrimaryButton: React.FC<buttonProps> = ({
       {/* Input Field */}
       <button
         type={type}
-        className={`relative z-20 w-full h-full px-4 py-2 text-white bg-transparent outline-none placeholder-white`}
+        className={`${customCss}relative z-20 w-full h-full px-4 py-2 text-white bg-transparent outline-none placeholder-white`}
         onClick={onClick}
       >
         {text}

@@ -1,5 +1,3 @@
-import { Children } from "react";
-
 interface modalProps {
   isOpen: boolean;
   onClose: () => void;

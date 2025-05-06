@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { SideBar } from "../components/Sidebar";
 import { TopBar } from "../components/Topbar";
 import { DashboardLayout, Page } from "./dashboard/_layout";
 

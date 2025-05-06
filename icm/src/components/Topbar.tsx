@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { NavTitle } from "./NavTitle";
 
 interface topBarProps {

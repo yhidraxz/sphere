@@ -1,11 +1,10 @@
-import { useEffect, useState } from "react";
-
 interface InputProps {
   name: string;
   label?: string;
   type?: string;
   value?: string;
   placeholder?: string;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export const Input: React.FC<InputProps> = ({
