@@ -1,5 +1,5 @@
 export function initiateFlow(queries: Array<string> | string, message: string) {
-  fetch("http://localhost:3000/flow", {
+  fetch("http://localhost:5000/flow", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

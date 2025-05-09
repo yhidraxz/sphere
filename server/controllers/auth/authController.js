@@ -1,9 +1,14 @@
-import users from "../../db/schemas/users"
+import User from "../../db/schemas/User.js"
 
 const login = async (req, res) => {
+    console.log('im on')
     const { loginKey } = req.body;
 
-    const user = await users.findOne({ loginKey })
+    console.log(loginKey)
+
+    const user = await User.findOne({ loginKey })
+
+    console.log(user)
     if (!user) {
         return res.status(401).json({error: 'invalid login key'})
     }

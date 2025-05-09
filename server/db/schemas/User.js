@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema({
-    loginKey: {type: string, required: true, unique: true},
+    loginKey: {type: String, required: true, unique: true},
     createdAt: {type: Date, default: Date.now},
 })
 

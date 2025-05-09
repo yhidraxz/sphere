@@ -1,7 +1,7 @@
-import { scrapeMaps } from "../../utils/googleScraper.js";
-import { sendMsg } from "../../utils/sendMsg.js";
+import { scrapeMaps } from "../../services/operations/googleScraper.js";
+import { sendMsg } from "../../services/operations/sendMsg.js";
 import { formatDuration } from "../../utils/formatDuration.js";
-import campaigns from "../../db/schemas/campaigns.js";
+import Campaign from "../../db/schemas/Campaign.js";
 
 const InitiateFlow = async (req, res) => {
   console.log("flow initiated");
@@ -13,7 +13,7 @@ const InitiateFlow = async (req, res) => {
   console.log(userId)
 
   const startedAt = new Date();
-  const campaign = await campaigns.create({user: userId, startedAt});
+  const campaign = await Campaign.create({user: userId, startedAt});
 
   //   let buzList = await scrapeMaps(queries);
 
@@ -28,7 +28,7 @@ const InitiateFlow = async (req, res) => {
 
 function getContacts(buzList) {
   let contacts = [];
-  
+
   for (business of buzList) {
     for (contact of business) {
       contacts.push(contact.numero);
@@ -43,7 +43,7 @@ async function endCampaign(campaignId, startedAt ) {
 
   const duration = formatDuration(durationMs);
 
-  await campaigns.findByIdAndUpdate(campaignId, {
+  await Campaign.findByIdAndUpdate(campaignId, {
     createdAt,
     endedAt,
     duration,

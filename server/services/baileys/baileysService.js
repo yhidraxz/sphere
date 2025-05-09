@@ -3,7 +3,7 @@
 //   makeInMemoryStore,
 // } from "baileys";
 import { deleteChat } from "./baileysUtils.js";
-import { awaitingReplyService } from "../../utils/awaitingReply.js";
+import { awaitingReplyService } from "../../services/operations/awaitingReply.js";
 import { aiAnalysis } from "../../services/openai/openai.js";
 import baileys from "@whiskeysockets/baileys";
 
@@ -23,6 +23,7 @@ store.readFromFile("./baileys_store.json");
 setInterval(() => {
   store.writeToFile("./baileys_store.json");
 }, 10000);
+
 export function startBaileys(OPENAI_API_KEY) {
   const sock = makeWASocket({
     printQRInTerminal: true,

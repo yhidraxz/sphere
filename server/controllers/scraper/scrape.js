@@ -1,6 +1,6 @@
-import { scrapeMaps } from "../../utils/googleScraper.js";
+import { scrapeMaps } from "../../services/operations/googleScraper.js";
 import { getContacts } from "../../utils/getContacts.js";
-import { sendMsg } from "../../utils/sendMsg.js";
+import { sendMsg } from "../../services/operations/sendMsg.js";
 
 const ScrapeSend = async (req, res) => {
   let queries = req.body.queries;
