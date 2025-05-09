@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { TopBar } from "../components/Topbar";
-import { DashboardLayout, Page } from "./dashboard/_layout";
+import { TopBar } from "../../components/Topbar";
+import { DashboardLayout, Page } from "./_layout";
 
 export default function Dashboard() {
   const [activePage, setActivePage] = useState<Page>("Geral");

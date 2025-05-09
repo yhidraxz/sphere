@@ -40,7 +40,7 @@ app.use("/scrape", scrapeRouter);
 app.use("/flow", flowRouter);
 
 app.listen(5000, () => {
-  console.log("server running on port 3000");
+  console.log(`server running on port 5000`);
 });
 
 export { app };
