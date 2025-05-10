@@ -8,7 +8,6 @@ const login = async (req, res) => {
 
     const user = await User.findOne({ loginKey })
 
-    console.log(user)
     if (!user) {
         return res.status(401).json({error: 'invalid login key'})
     }

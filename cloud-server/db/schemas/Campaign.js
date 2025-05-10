@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const campaignsSchema = new mongoose.Schema({
-    user: {type: mongoose.Schema.Types.ObjectId, ref: "User", required: true},
+    userId: {type: mongoose.Schema.Types.ObjectId, ref: "User", required: true},
     createdAt: Date,
     endedAt: Date,
     duration: String,

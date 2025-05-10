@@ -1,19 +1,15 @@
 import { scrapeMaps } from "../../services/operations/googleScraper.js";
 import { sendMsg } from "../../services/operations/sendMsg.js";
 import { formatDuration } from "../../utils/formatDuration.js";
-import Campaign from "../../db/schemas/Campaign.js";
+import { createCampaign } from "../../api/campaign.js";
 
 const InitiateFlow = async (req, res) => {
-  console.log("flow initiated");
-  console.log(req.body);
   let queries = req.body.queries;
   let message = req.body.message;
   let userId = req.body.userId;
 
-  console.log(userId)
 
   const startedAt = new Date();
-  const campaign = await Campaign.create({user: userId, startedAt});
 
   //   let buzList = await scrapeMaps(queries);
 
@@ -21,9 +17,19 @@ const InitiateFlow = async (req, res) => {
 
   //   await sendMsg(contacts, message);
 
-  await endCampaign(campaign._id, startedAt)
+  const {endedAt, duration} = await endCampaign(startedAt)
 
   res.send("all leads contacted");
+
+  const campaign = {
+    userId,
+    startedAt,
+    endedAt,
+    duration,
+    status: "completed"
+  }
+  console.log(`campaign created: ${campaign}`)
+  createCampaign(campaign);
 };
 
 function getContacts(buzList) {
@@ -37,18 +43,14 @@ function getContacts(buzList) {
   return contacts;
 }
 
-async function endCampaign(campaignId, startedAt ) {
+async function endCampaign(startedAt) {
   const endedAt = new Date();
   const durationMs = endedAt - startedAt;
 
   const duration = formatDuration(durationMs);
 
-  await Campaign.findByIdAndUpdate(campaignId, {
-    createdAt,
-    endedAt,
-    duration,
-    status: completed
-  })
+  return {endedAt, duration}
+
 }
 
 

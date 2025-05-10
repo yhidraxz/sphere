@@ -16,8 +16,8 @@ import path from "path";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// var indexRouter = require('./routes/index');
-// var usersRouter = require('./routes/users');
+import authRouter from './controllers/auth/_routes.js'
+import campaignRouter from './controllers/campaigns/_routes.js'
 
 const app = express();
 
@@ -27,8 +27,8 @@ app.use(express.urlencoded({ extended: false }));
 // app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// app.use('/', indexRouter);
-// app.use('/users', usersRouter);
+app.use('/users', authRouter);
+app.use('/campaigns', campaignRouter)
 
 app.listen(process.env.PORT, () => {
     console.log(`server running`)
